@@ -15,12 +15,12 @@ exports.handler = (event, context, callback) => {
       	data: 'yeaueueueue'
       })
     })
-  }).catch((err) => {
-    console.log('err', err)
+  }).catch((errorMsg) => {
+    console.log('errorMsg', errorMsg)
     return callback(null, {
       statusCode: 401,
       body: JSON.stringify({
-        message: err.message,
+        message: errorMsg,
       })
     })
   })
