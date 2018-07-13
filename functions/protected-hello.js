@@ -44,7 +44,7 @@ function checkAuth(event) {
     }
 
     // remove "bearer " word from token
-    const authToken = event.authorizationToken.substring(7)
+    const authToken = event.headers.authorization.substring(7)
 
     // Validate Token is not malformed. AKA fail fail
     let decodedToken
