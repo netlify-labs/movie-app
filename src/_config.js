@@ -10,5 +10,6 @@ module.exports.config = {
   // api endpoints
   api: {
     hello: '/.netlify/functions/hello',
+    getMovies: '/.netlify/functions/protected-get-movies'
   }
 }

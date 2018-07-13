@@ -11,6 +11,17 @@ export function pingHello() {
   })
 }
 
+export function getMovies() {
+  return fetch(config.api.getMovies, {
+    method: 'POST',
+    headers: generateHeaders(),
+    body: JSON.stringify({
+      text: 'hi',
+    })
+  })
+}
+
+
 /* api utils */
 function generateHeaders() {
   const token = localStorage.getItem('id_token')
