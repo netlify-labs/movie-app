@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import jwksClient from 'jwks-rsa'
+import faker from 'faker'
 
 exports.handler = (event, context, callback) => {
   // Use the event data auth header to verify
@@ -8,11 +9,25 @@ exports.handler = (event, context, callback) => {
     console.log(user)
 
     // do the stuff
+    const movies = [];
+
+    for (var i = 20; i >= 0; i--) {
+      var randomName = faker.name.findName();
+      var adjective = faker.hacker.adjective()
+      var verb = faker.hacker.verb()
+      var noun = faker.hacker.noun()
+      movies.push({
+        title: `${randomName} ${verb}s ${adjective} ${noun}`,
+        quote: faker.hacker.phrase(),
+        director: faker.name.findName()
+      })
+    }
 
     return callback(null, {
       statusCode: 200,
       body: JSON.stringify({
-      	data: 'yeaueueueue'
+        user: user,
+      	data: movies
       })
     })
   }).catch((errorMsg) => {
@@ -98,9 +113,7 @@ function checkAuth(event) {
           /**/
 
           // Everything is ok!
-          return resolve({
-            user: true
-          })
+          return resolve(decoded)
         })
       } catch (err) {
         console.log('jwt.verify exception', err)
