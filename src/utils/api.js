@@ -1,4 +1,4 @@
-import { config } from '../_config'
+import config from '../_config'
 
 // ⊂◉‿◉つ
 export function pingHello() {
@@ -8,7 +8,7 @@ export function pingHello() {
     body: JSON.stringify({
       text: 'hi',
     })
-  })
+  }).then(data => data.json())
 }
 
 export function getMovies() {
@@ -18,7 +18,7 @@ export function getMovies() {
     body: JSON.stringify({
       text: 'hi',
     })
-  })
+  }).then(data => data.json())
 }
 
 

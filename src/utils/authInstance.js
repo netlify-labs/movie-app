@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js'
+import config from '../_config'
 import { initializeXsrfToken } from './xsrf'
-import { config } from '../_config'
 
 export default function WebAuth() {
   // set xsrf token

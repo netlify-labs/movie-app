@@ -1,5 +1,5 @@
 
-module.exports.config = {
+const config = {
   // auth0 setup
   auth0: {
     domain: 'netlify-dev.auth0.com',
@@ -13,3 +13,5 @@ module.exports.config = {
     getMovies: '/.netlify/functions/protected-get-movies'
   }
 }
+
+export default config

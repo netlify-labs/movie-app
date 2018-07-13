@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import jwksClient from 'jwks-rsa'
 import faker from 'faker'
+import config from '../src/_config'
 
 exports.handler = (event, context, callback) => {
   // Use the event data auth header to verify
@@ -35,18 +36,19 @@ exports.handler = (event, context, callback) => {
     })
   }).catch((errorMsg) => {
     console.log('errorMsg', errorMsg)
+    console.log(typeof errorMsg)
     // return error back to app
     return callback(null, {
       statusCode: 401,
       body: JSON.stringify({
-        message: errorMsg,
+        error: errorMsg,
       })
     })
   })
 }
 
 /* initialize the JWKS client */
-const auth0Domain = process.env.AUTH0_DOMAIN
+const auth0Domain = process.env.AUTH0_DOMAIN || config.auth0.domain
 const authClient = jwksClient({
   cache: true,
   jwksUri: `https://${auth0Domain}/.well-known/jwks.json`,
@@ -56,21 +58,24 @@ const authClient = jwksClient({
 function checkAuth(event) {
   const alg = 'RS256' // algorithm is RSA http://bit.ly/2xAYygk
   return new Promise((resolve, reject) => {
-
     if (!event.headers.authorization) {
       const reason = 'missing event.headers.authorization. You must be signed in to call this function'
       return reject('JWT token is malformed')
     }
-
+    console.log('event.headers', event.headers)
     // remove "bearer " word from token
     const authToken = event.headers.authorization.substring(7)
 
-    // Validate Token is not malformed. AKA fail fail
+    // Validate Token is not malformed. AKA fail fast
     let decodedToken
     try {
       decodedToken = jwt.decode(authToken, { complete: true })
      } catch (err) {
       console.log(err)
+      return reject('JWT token is malformed')
+    }
+
+    if (!decodedToken || !decodedToken.header || !decodedToken.header.kid) {
       return reject('JWT token is malformed')
     }
 
@@ -107,6 +112,7 @@ function checkAuth(event) {
 
 
           /* if you want to allow only certain roles use this
+          const siteUrl =  config.jwtRoleNamespace || process.env.URL
           const roles = decoded[`https://${process.env.URL}/roles`]
           const requiredRole = 'user'
           if (!roles || !roles.length || !roles.includes(requiredRole)) {
