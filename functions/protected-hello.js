@@ -5,24 +5,27 @@ import faker from 'faker'
 exports.handler = (event, context, callback) => {
   // Use the event data auth header to verify
   checkAuth(event).then((user) => {
+    console.log('user', user)
+    // data from body
     const payload = JSON.parse(event.body)
-    console.log(user)
+    console.log('payload', payload)
 
-    // do the stuff
+    // generate movie titles
     const movies = [];
-
-    for (var i = 20; i >= 0; i--) {
+    const numberOfMovies = 10
+    for (var i = numberOfMovies; i >= 0; i--) {
       var randomName = faker.name.findName();
       var adjective = faker.hacker.adjective()
       var verb = faker.hacker.verb()
       var noun = faker.hacker.noun()
       movies.push({
-        title: `${randomName} ${verb}s ${adjective} ${noun}`,
+        title: `${randomName} ${verb}s ${adjective} ${noun}s`,
         quote: faker.hacker.phrase(),
         director: faker.name.findName()
       })
     }
 
+    // return movie list to app
     return callback(null, {
       statusCode: 200,
       body: JSON.stringify({
@@ -32,6 +35,7 @@ exports.handler = (event, context, callback) => {
     })
   }).catch((errorMsg) => {
     console.log('errorMsg', errorMsg)
+    // return error back to app
     return callback(null, {
       statusCode: 401,
       body: JSON.stringify({
