@@ -30,7 +30,7 @@ exports.handler = (event, context, callback) => {
       statusCode: 200,
       body: JSON.stringify({
         user: user,
-      	data: movies
+      	movies: movies
       })
     })
   }).catch((errorMsg) => {
