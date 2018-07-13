@@ -5,3 +5,6 @@
   publish = "build"
   # Location of built function code
   functions = "functions-build"
+
+[template.environment]
+  AUTH0_DOMAIN = "Your Auth0 domain"
