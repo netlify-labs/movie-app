@@ -61,7 +61,8 @@ class App extends React.Component {
             if (!props.isAuthed) {
               return (
                 <Switch>
-                  <Route path={`/`} exact component={Welcome} />
+                  <Route path={`/`} exact component={Dashboard} />
+                  <Route path={'/details/:id'} component={Details} />
                   <Route render={() => <PleaseLogin logIn={this.logIn} {...props} />}  />
                 </Switch>
               )
@@ -71,8 +72,8 @@ class App extends React.Component {
             return (
               <Switch>
                 <Route path={`/`} exact component={Dashboard} />
+                <Route path={'/details/:id'} render={() => <Details isAuthed={props.isAuthed} {...props} />} />
                 <Route path={`/profile`} render={profile} />
-                <Route path={'/details/:id'} component={Details} />
                 <Route component={NotFound} />
               </Switch>
             )

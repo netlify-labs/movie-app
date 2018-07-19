@@ -49,20 +49,7 @@ Make sure you are using https`
     console.log('authResult', authResult)
 
     if (authResult && authResult.accessToken && authResult.idToken) {
-      const role = this.getRole(authResult.idToken)
-
-      // TODO finish roles needed for app
-      /*if (!role) {
-        alert('Roles not used in app. Update auth0 rules')
-        return false
-      }
-      // TODO set what admin rights we need
-      if (!role.length || !this.isAdmin(role)) {
-        alert('Sorry you are not an admin of this app! Please contact admin')
-        // no role. redirect them home
-        return history.replace('/')
-      }
-      */
+      //const role = this.getRole(authResult.idToken)
       // Set the time that the access token will expire at
       const expiresAt = JSON.stringify(
         authResult.expiresIn * 1000 + new Date().getTime()
@@ -115,28 +102,6 @@ Make sure you are using https`
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
-  }
-
-  isAdmin(rolesArray) {
-    return true
-    // TODO change roles
-    // return rolesArray.indexOf('app-admin') > -1
-  }
-
-  isSuperAdmin(rolesArray) {
-    return true
-    // TODO change roles
-    // return rolesArray.indexOf('app-super-admin') > -1
-  }
-
-  getRole(token) {
-    const namespace = config.jwtRoleNamespace
-    const idToken = token || localStorage.getItem('id_token')
-    if (!idToken) {
-      return null
-    }
-    const decoded = decode(idToken)
-    return decoded[`${namespace}/roles`] || null
   }
 }
 

@@ -10,7 +10,7 @@ export default class Profile extends Component {
       return <div>Loading</div>
     }
 
-    const image = (profile.picture) ? <img src={profile.picture} alt="profile" /> : null
+    const image = (profile.picture) ? <img src={profile.picture} alt="profile" className="img-thumbnail" /> : null
 
     let nickname
     if (profile.picture) {
@@ -24,16 +24,21 @@ export default class Profile extends Component {
 
     return (
       <AppLayout>
-        <h1>{profile.name}</h1>
-        <div>
-          {image}
-          {nickname}
-        </div>
-        <div>
-          <h2>User data from JWT</h2>
-          <pre>
-            {JSON.stringify(profile, null, 2)}
-          </pre>
+        <div className="container card">
+          <div className="card-body">
+            <h1>{profile.name} <small>({profile.nickname})</small></h1>
+            <div class="row">
+              <div class="col-sm-6">
+              {image}
+              </div>
+              <div className="col-sm-6">
+                <h2>User data from JWT</h2>
+                <pre>
+                  {JSON.stringify(profile, null, 2)}
+                </pre>
+              </div>
+            </div>
+          </div>
         </div>
       </AppLayout>
     )
