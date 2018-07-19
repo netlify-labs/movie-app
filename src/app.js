@@ -11,6 +11,7 @@ import Welcome from './pages/Welcome'
 import Loading from './pages/Loading'
 import PleaseLogin from './pages/PleaseLogin'
 import NotFound from './pages/NotFound'
+import Details from './pages/Details'
 
 
 class App extends React.Component {
@@ -71,6 +72,7 @@ class App extends React.Component {
               <Switch>
                 <Route path={`/`} exact component={Dashboard} />
                 <Route path={`/profile`} render={profile} />
+                <Route path={'/details/:id'} component={Details} />
                 <Route component={NotFound} />
               </Switch>
             )

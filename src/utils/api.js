@@ -1,4 +1,6 @@
+import React, { Component } from 'react'
 import config from '../_config'
+import * as algoliasearch from 'algoliasearch'; 
 
 // ⊂◉‿◉つ
 export function pingHello() {
@@ -9,6 +11,13 @@ export function pingHello() {
       text: 'hi',
     })
   }).then(data => data.json())
+}
+
+var client = algoliasearch(config.algolia.appId, config.algolia.apiKey);
+var index = client.initIndex(config.algolia.index);
+
+export function movieDetails(id){
+  return index.getObject(id);
 }
 
 export function getMovies() {
