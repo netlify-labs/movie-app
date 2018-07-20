@@ -72,7 +72,7 @@ a {
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF0F3F6', endColorstr='#FFDCE3EC')";
 }
 .layout {
-  padding: 0 30px;
+  padding: 30px;
 }
 .page-title {
   display: flex;
@@ -82,4 +82,86 @@ a {
 }
 .back-button {
   text-decoration: none;
+}
+
+.ais-Hits-list, .ais-InfiniteHits-list, .ais-InfiniteResults-list, .ais-Results-list {
+  margin-top: -1rem;
+  margin-left: -1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.ais-Hits-item, .ais-InfiniteHits-item, .ais-InfiniteResults-item, .ais-Results-item {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  padding: 0;
+  width: calc(25% - 1rem);
+  border: 1px solid #c4c8d8;
+  box-shadow: 0 2px 5px 0 #e3e5ec;
+  background: #FFF;
+  border-radius: 3px;
+}
+
+.movie-preview {
+  background: #fff;
+  padding: 20px;
+  min-height: 100%;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.movie-preview img {
+  margin-bottom: 10px;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.ais-Breadcrumb-list, .ais-CurrentRefinements-list, .ais-HierarchicalMenu-list, .ais-Hits-list, .ais-InfiniteHits-list, .ais-InfiniteResults-list, .ais-Menu-list, .ais-NumericMenu-list, .ais-Pagination-list, .ais-RatingMenu-list, .ais-RefinementList-list, .ais-Results-list, .ais-ToggleRefinement-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ais-SearchBox-form {
+  display: block;
+  position: relative;
+}
+
+.ais-SearchBox-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: .3rem 1.7rem;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #c4c8d8;
+  border-radius: 5px;
+}
+
+.ais-SearchBox-submit {
+  left: .3rem;
+}
+
+[type=reset], [type=submit], button, html [type=button] {
+  -webkit-appearance: button;
+}
+
+.image {
+  display: block;
+  margin: 0 auto;
+}
+
+.movie-picture {
+  background: #fff;
+  padding: 50px;
+}
+
+.showtime {
+  margin-bottom: 15px;
 }

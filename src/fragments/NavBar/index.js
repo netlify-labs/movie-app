@@ -15,21 +15,20 @@ class NavBar extends Component {
 
     let leftNav = (
       <div>
+        {/* 
         <Link to={`/profile/`} style={styles}>
           Profile (protected)
         </Link>
-        <Link to={`/this-doesnt-exist/`} style={styles}>
-          404 link
-        </Link>
+        */}
       </div>
     )
 
     let rightNav = (
       <span>
-        <a href="https://github.com/repo">
-          View on Github
+        <a href="https://github.com/repo" target="_blank">
+          <i className="fab fa-github"></i>
         </a>
-        <button style={{marginLeft: 20}} className="button" onClick={this.logIn}>
+        <button style={{marginLeft: 20}} className="btn" onClick={this.logIn}>
           Log In
         </button>
       </span>
@@ -39,19 +38,24 @@ class NavBar extends Component {
     if (isAuthed) {
       leftNav = (
         <span>
+          {/*
           <Link to={`/profile/`} style={styles}>
             Profile
           </Link>
+          */}
         </span>
       )
       rightNav = (
         <span>
-          <button className="button" onClick={simulateNoAuth}>
-            Mangle JWT Token
-          </button>
-          <button className="button" onClick={auth.logout} style={styles}>
-            Log Out
-          </button>
+          <a href="https://github.com/repo" target="_blank">
+            <i className="fab fa-github"></i>
+          </a>
+          <a href="" onClick={auth.logout} style={{marginLeft: 20}}>
+            Logout
+          </a>
+          <Link to={`/profile/`} className="btn btn-dark" style={{marginLeft: 20}}>
+            Profile
+          </Link>
         </span>
       )
     }
@@ -61,7 +65,7 @@ class NavBar extends Component {
         <nav className='navbar'>
           <div className='left-nav'>
             <Link className='logo' title='logo' to='/'>
-              APP LOGO
+              Universe Theater
             </Link>
             {leftNav}
           </div>

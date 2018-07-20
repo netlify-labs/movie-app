@@ -11,6 +11,6 @@ export default function WebAuth() {
     clientID: config.auth0.clientId,
     audience: `https://${config.auth0.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid email'
+    scope: 'openid email profile'
   })
 }
