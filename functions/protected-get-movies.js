@@ -1,13 +1,14 @@
 import faker from 'faker'
 import checkAuth from './utils/checkAuth'
 import formatTime from './utils/formatTime'
+import safelyParseJSON from './utils/safelyParseJSON'
 
 exports.handler = (event, context, callback) => {
   // Use the event data auth header to verify
   checkAuth(event).then((user) => {
     console.log('user', user)
     // data from body
-    const payload = JSON.parse(event.body)
+    const payload = safelyParseJSON(body)
     console.log('payload', payload)
 
     // generate movie titles
