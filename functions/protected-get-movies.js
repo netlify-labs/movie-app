@@ -19,10 +19,12 @@ exports.handler = (event, context, callback) => {
       var adjective = faker.hacker.adjective()
       var verb = faker.hacker.verb()
       var noun = faker.hacker.noun()
+      var date = faker.date.future()
       movies.push({
         title: `${randomName} ${verb}s ${adjective} ${noun}s`,
         quote: faker.hacker.phrase(),
-        director: faker.name.findName()
+        director: faker.name.findName(),
+        time: formatTime(new Date(date))
       })
     }
 
@@ -46,6 +48,23 @@ exports.handler = (event, context, callback) => {
     })
   })
 }
+
+
+function formatTime(dateObj) {
+  var hour = dateObj.getHours()
+  var minute = dateObj.getMinutes()
+  var amPM = (hour > 11) ? "pm" : "am"
+  if (hour > 12) {
+    hour -= 12
+  } else if (hour == 0) {
+    hour = "12"
+  }
+  if (minute < 10) {
+    minute = `0${minute}`
+  }
+  return `${hour}:${minute} ${amPM}`
+}
+
 
 /* initialize the JWKS client */
 const auth0Domain = process.env.AUTH0_DOMAIN || config.auth0.domain
