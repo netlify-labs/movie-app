@@ -3,11 +3,10 @@ import checkAuth from './utils/checkAuth'
 
 const authMiddleware = (options) => {
   return ({
-    before: (handler, next) => {
-      return checkAuth(handler.event).then((user) => {
-        console.log('user', user)
-        return user
-      })
+    before: async (handler, next) => {
+      const user = await checkAuth(handler.event)
+      console.log('middy user')
+      return user
     }
   })
 }
