@@ -4,11 +4,10 @@ import checkAuth from './utils/checkAuth'
 const authMiddleware = (options) => {
   return ({
     before: (handler, next) => {
-      if (handler.event) {
-        return checkAuth(handler.event)
-      }
-
-      return Promise.resolve()
+      return checkAuth(handler.event).then((user) => {
+        console.log('user', user)
+        return user
+      })
     }
   })
 }
