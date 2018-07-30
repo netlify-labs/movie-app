@@ -15,6 +15,7 @@ const authClient = jwksClient({
 export default function checkAuth(event) {
   const alg = 'RS256' // algorithm is RSA http://bit.ly/2xAYygk
   return new Promise((resolve, reject) => {
+    console.log('event.headers', event.headers)
     if (!event.headers.authorization) {
       const reason = 'Missing event.headers.authorization. You must be signed in to call this function'
       return reject(new Error(reason))
