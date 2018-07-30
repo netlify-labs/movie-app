@@ -5,8 +5,11 @@ const authMiddleware = (options) => {
   return ({
     before: async (handler, next) => {
       const user = await checkAuth(handler.event)
-      console.log('middy user')
-      return user
+      console.log('middy user', user)
+      if (user) {
+        return user
+      }
+      return 
     }
   })
 }
