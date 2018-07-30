@@ -29,7 +29,10 @@ const myMiddleware = (config) => {
         next()
       }).catch((e) => {
         console.log('throw e', e)
-        throw e
+        return handler.callback(null, {
+          statusCode: 401,
+          message: e.message
+        })
       })
     },
     after: (handler, next) => {
