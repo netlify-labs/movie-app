@@ -13,7 +13,7 @@ class NavBar extends Component {
 
     let leftNav = (
       <div>
-        {/* 
+        {/*
         <Link to={`/profile/`} style={styles}>
           Profile (protected)
         </Link>
@@ -23,7 +23,7 @@ class NavBar extends Component {
 
     let rightNav = (
       <span>
-        <a href="https://github.com/repo" target="_blank">
+        <a href="https://github.com/DavidWells/meetup-app" target="_blank">
           <i className="fab fa-github"></i>
         </a>
         <button style={{marginLeft: 20}} className="btn" onClick={this.logIn}>
@@ -45,7 +45,7 @@ class NavBar extends Component {
       )
       rightNav = (
         <span>
-          <a href="https://github.com/repo" target="_blank">
+          <a href="https://github.com/DavidWells/meetup-app" target="_blank">
             <i className="fab fa-github"></i>
           </a>
           <a href="" onClick={auth.logout} style={{marginLeft: 20}}>
