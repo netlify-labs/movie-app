@@ -9,7 +9,7 @@ export default function WebAuth() {
   return new auth0.WebAuth({
     domain: config.auth0.domain,
     clientID: config.auth0.clientId,
-    audience: `https://${config.auth0.domain}/userinfo`,
+    audience: `universe-theater`,
     responseType: 'token id_token',
     scope: 'openid email profile'
   })

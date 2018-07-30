@@ -165,3 +165,9 @@ a:hover {
 .showtime {
   margin-bottom: 15px;
 }
+
+@media only screen and (max-width: 600px) {
+  .ais-Hits-item, .ais-InfiniteHits-item, .ais-InfiniteResults-item, .ais-Results-item {
+      width: calc(50% - 1rem)
+  }
+}

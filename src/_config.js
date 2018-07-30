@@ -2,8 +2,8 @@
 const config = {
   // auth0 setup
   auth0: {
-    domain: 'netlify-dev.auth0.com',
-    clientId: 'ZrIB2cm449olRhnjr6h5fuxx7F7Yba9K',
+    domain: 'adobot.auth0.com',
+    clientId: 'DJmrZzLRdbvgeRu2KSWuRAS4ncdLQMij',
     callbackPath: '/callback'
   },
   algolia: {
@@ -11,11 +11,11 @@ const config = {
     apiKey: '56f24e4276091e774e8157fe4b8b11f6',
     index: 'movies'
   },
-  jwtRoleNamespace: 'http://your-site.com',
   // api endpoints
   api: {
     hello: '/.netlify/functions/hello',
-    getMovies: '/.netlify/functions/protected-get-movies'
+    getMovies: '/.netlify/functions/protected-get-movies',
+    getShowtimes: '/.netlify/functions/get-movie-showtimes.js'
   }
 }
 

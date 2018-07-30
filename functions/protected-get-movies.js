@@ -5,12 +5,7 @@ import safelyParseJSON from './utils/safelyParseJSON'
 
 exports.handler = (event, context, callback) => {
   // Use the event data auth header to verify
-  checkAuth(event).then((user) => {
-    console.log('user', user)
     // data from body
-    const payload = safelyParseJSON(body)
-    console.log('payload', payload)
-
     // generate movie titles
     const movies = []
     const numberOfMovies = 10
@@ -32,18 +27,7 @@ exports.handler = (event, context, callback) => {
     return callback(null, {
       statusCode: 200,
       body: JSON.stringify({
-        user: user,
         movies: movies
       })
     })
-  }).catch((error) => {
-    console.log('error', error)
-    // return error back to app
-    return callback(null, {
-      statusCode: 401,
-      body: JSON.stringify({
-        error: error.message,
-      })
-    })
-  })
 }

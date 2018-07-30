@@ -1,7 +1,5 @@
 import auth0Instance from './authInstance'
-import decode from 'jwt-decode'
 import history from './history'
-import config from '../_config'
 import { getXsrfToken, clearXsrfToken } from './xsrf' // eslint-disable-line
 
 export default class Auth {
@@ -28,9 +26,8 @@ export default class Auth {
         console.log('err', err)
         const errMsg = `Sorry an error occured.
 
-${JSON.stringify((err))}
+        ${JSON.stringify((err))}`
 
-Make sure you are using https`
         alert(errMsg)
       }
 

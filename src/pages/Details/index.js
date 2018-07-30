@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import AppLayout from '../../fragments/AppLayout'
-import { movieDetails } from '../../utils/api'
+import { movieDetails, getShowtimes } from '../../utils/api'
 
 export default class Details extends Component {
   state = {
       movie : {
         actors: []
       },
-      showtimes: ['10:45am', '12:30pm', '1:30pm', '2:00pm', '2:15pm', '3:00pm', '3:45pm', '5:00pm', '6:00pm', '7:30pm', '8:00pm', '9:00pm', '11:00pm']
+      showtimes: []
   }
 
   componentDidMount(){
@@ -17,6 +17,16 @@ export default class Details extends Component {
           movie: data
       })
     });
+    
+    getShowtimes().then(data=>{
+      this.setState({
+        showtimes: data.data
+      })
+    })
+  }
+
+  seeMovie(showtime){
+    alert(`You have chosen the ${showtime} showtime. Enjoy the show!`)
   }
 
   renderActors(){
@@ -34,8 +44,8 @@ export default class Details extends Component {
     const showtimes = this.state.showtimes
     return showtimes.map((showtime, i) => {
       return (
-        <div key={i} className="col-sm-3 showtime">
-          <a className="btn btn-light btn-block">
+        <div key={i} className="col-sm-4 col-lg-3 showtime">
+          <a className="btn btn-light btn-block" onClick={()=>this.seeMovie(showtime)}>
             {showtime}
           </a>
         </div>
@@ -54,7 +64,7 @@ export default class Details extends Component {
         <div className="container">
           <div className="row movie-details">
             <div className="col-sm-3 movie-picture" style={style}>
-                <img src={movie.image} style={{width:'100%'}} />
+                <img src={movie.image} style={{width:'100%'}} alt="Poster" />
             </div>
             <div className="col-sm-9 movie-info card">
                 <h1>{movie.title}</h1>

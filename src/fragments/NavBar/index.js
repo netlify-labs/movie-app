@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as userActions from '../../redux/user'
-import { simulateNoAuth } from '../../utils/auth'
 
 class NavBar extends Component {
   logIn = () => {
@@ -11,7 +10,6 @@ class NavBar extends Component {
   }
   render() {
     const { auth, isAuthed } = this.props
-    const styles = { margin: 15 }
 
     let leftNav = (
       <div>
@@ -64,9 +62,14 @@ class NavBar extends Component {
       <div>
         <nav className='navbar'>
           <div className='left-nav'>
-            <Link className='logo' title='logo' to='/'>
+            <Link className='logo d-sm-none d-none d-sm-block d-md-block' title='logo' to='/'>
               Universe Theater
             </Link>
+
+            <Link className='logo d-block d-sm-none' title='logo' to='/'>
+              UT
+            </Link>
+
             {leftNav}
           </div>
           <div className='right-nav'>
