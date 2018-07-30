@@ -15,7 +15,7 @@ const config = {
   api: {
     hello: '/.netlify/functions/hello',
     getMovies: '/.netlify/functions/protected-get-movies',
-    getShowtimes: '/.netlify/functions/get-movie-showtimes.js'
+    getShowtimes: '/.netlify/functions/get-movie-showtimes'
   }
 }
 
