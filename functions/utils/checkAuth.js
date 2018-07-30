@@ -8,7 +8,7 @@ const authClient = jwksClient({
   cache: true,
   jwksUri: `https://${auth0Domain}/.well-known/jwks.json`,
   audience: 'universe-theater',
-  issuer: "https://adobot.auth0.com/",
+  issuer: 'https://adobot.auth0.com/',
 })
 
 /* Check authorization JWT */
@@ -38,6 +38,7 @@ export default function checkAuth(event) {
     }
 
     const kid = decodedToken.header.kid
+    console.log('kid', kid)
     // Get Signing key from auth0
     authClient.getSigningKey(kid, (signError, key) => {
       if (signError) {
