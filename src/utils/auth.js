@@ -32,21 +32,21 @@ export default class Auth {
       }
 
       if (authResult && authResult.accessToken && authResult.idToken) {
-        //console.log('authResult', authResult)
+        // console.log('authResult', authResult)
         this.setSession(authResult)
       } else if (err) {
         history.replace('/')
         console.log(err)
         alert(`Error: ${err.error}. Check the console for further details.`)
       }
-    });
+    })
   }
 
   setSession(authResult) {
     console.log('authResult', authResult)
 
     if (authResult && authResult.accessToken && authResult.idToken) {
-      //const role = this.getRole(authResult.idToken)
+      // const role = this.getRole(authResult.idToken)
       // Set the time that the access token will expire at
       const expiresAt = JSON.stringify(
         authResult.expiresIn * 1000 + new Date().getTime()
@@ -82,26 +82,25 @@ export default class Auth {
         return cb(err, user)
       }
       // Now you have the user's information
-    });
+    })
   }
 
   logout = () => {
     // Clear access token and ID token from local storage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('id_token')
+    localStorage.removeItem('expires_at')
     // navigate to the home route
-    history.replace('/');
+    history.replace('/')
   }
 
   isAuthed = () => {
     // Check whether the current time is past the
     // access token's expiry time
-    let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return new Date().getTime() < expiresAt;
+    let expiresAt = JSON.parse(localStorage.getItem('expires_at'))
+    return new Date().getTime() < expiresAt
   }
 }
-
 
 export function simulateNoAuth() {
   console.log('Mangling JWTs')

@@ -12,7 +12,7 @@ export function movieDetails(id) {
 export function getMovies() {
   return fetch(config.api.getMovies, {
     method: 'POST',
-  }).then(data=>data.json());
+  }).then(data => data.json())
 }
 
 // Protected Route

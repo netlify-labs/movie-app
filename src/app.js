@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as userActions from './redux/user'
-import { auth } from './redux/user'
+import * as userActions from './redux/user' // eslint-disable-line
+import { auth } from './redux/user' // eslint-disable-line
 /* import react components for routes */
 import NavBar from './fragments/NavBar'
 import Dashboard from './pages/Dashboard'
@@ -12,9 +12,8 @@ import PleaseLogin from './pages/PleaseLogin'
 import NotFound from './pages/NotFound'
 import Details from './pages/Details'
 
-
 class App extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.checkLogin()
   }
   logIn = () => {
@@ -62,7 +61,7 @@ class App extends React.Component {
                 <Switch>
                   <Route path={`/`} exact component={Dashboard} />
                   <Route path={'/details/:id'} component={Details} />
-                  <Route render={() => <PleaseLogin logIn={this.logIn} {...props} />}  />
+                  <Route render={() => <PleaseLogin logIn={this.logIn} {...props} />} />
                 </Switch>
               )
             }
