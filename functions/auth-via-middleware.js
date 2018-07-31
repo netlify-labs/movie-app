@@ -14,7 +14,7 @@ const authMiddleware = (config) => {
         return handler.callback(null, {
           statusCode: 401,
           body: JSON.stringify({
-            auth: 'false',
+            auth: 'no',
             message: e.message
           })
         })
