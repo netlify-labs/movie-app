@@ -30,10 +30,16 @@ const myMiddleware = (config) => {
         next()
       }).catch((e) => {
         console.log('throw e', e)
-        next({
+        return handler.callback(null, {
           statusCode: 401,
-          message: e.message
+          body: JSON.stringify({
+            data: 'auth false'
+          })
         })
+        // next({
+        //   statusCode: 401,
+        //   message: e.message
+        // })
       })
     },
     onError: (handler, next) => {
