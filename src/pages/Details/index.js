@@ -6,8 +6,7 @@ export default class Details extends Component {
   state = {
     movie: {
       actors: []
-    },
-    showtimes: []
+    }
   }
 
   componentDidMount() {
@@ -17,16 +16,6 @@ export default class Details extends Component {
         movie: data
       })
     })
-
-    getShowtimes().then(data => {
-      this.setState({
-        showtimes: data.data
-      })
-    })
-  }
-
-  seeMovie(showtime) {
-    alert(`You have chosen the ${showtime} showtime. Enjoy the show!`)
   }
 
   renderActors() {
@@ -35,19 +24,6 @@ export default class Details extends Component {
       return (
         <div key={i} className='actor'>
           <strong>{actor}</strong>
-        </div>
-      )
-    })
-  }
-
-  renderShowtimes() {
-    const showtimes = this.state.showtimes
-    return showtimes.map((showtime, i) => {
-      return (
-        <div key={i} className="col-sm-4 col-lg-3 showtime">
-          <a className="btn btn-light btn-block" onClick={() => this.seeMovie(showtime)}>
-            {showtime}
-          </a>
         </div>
       )
     })
@@ -63,6 +39,23 @@ export default class Details extends Component {
       <AppLayout>
         <div className="container">
           <div className="row movie-details">
+            <div className="col-sm-3 movie-picture">
+
+            </div>
+            <div className="col-sm-9 movie-info card">
+
+            </div>
+          </div>
+        </div>
+      </AppLayout>
+    )
+  }
+}
+
+/*
+<AppLayout>
+        <div className="container">
+          <div className="row movie-details">
             <div className="col-sm-3 movie-picture" style={style}>
               <img src={movie.image} style={{width: '100%'}} alt="Poster" />
             </div>
@@ -74,23 +67,7 @@ export default class Details extends Component {
               </div>
             </div>
           </div>
-          <div className="row showtimes">
-            <div className="col-sm-12">
-              <h2>Showtimes</h2>
-              <div className="row">
-                {isAuthed && this.renderShowtimes()}
-                {!isAuthed &&
-                  <div className="col-sm-12 card">
-                    <div className="card-body text-center">
-                      <h1>Login to see showtimes</h1>
-                    </div>
-                  </div>
-                }
-              </div>
-            </div>
-          </div>
         </div>
       </AppLayout>
     )
-  }
-}
+*/

@@ -44,10 +44,18 @@ export default class Dashboard extends Component {
   render() {
     return (
       <AppLayout>
-        {/* <div className="container">
-              {this.renderMovies()}
-            </div>
-        */}
+        <div className="container">
+          
+        </div>
+      </AppLayout>
+    )
+  }
+}
+
+
+/*
+return (
+      <AppLayout>
         <div className="container">
           <h1>Top Movies</h1>
           <InstantSearch appId={config.algolia.appId} apiKey={config.algolia.apiKey} indexName={config.algolia.index}>
@@ -57,5 +65,4 @@ export default class Dashboard extends Component {
         </div>
       </AppLayout>
     )
-  }
-}
+*/
