@@ -1,6 +1,6 @@
-# App
+# Movie App &nbsp;&nbsp;&nbsp;<a href="https://app.netlify.com/start/deploy?repository=https://github.com/DavidWells/meetup-app/edit/master/README.md"><img src="https://www.netlify.com/img/deploy/button.svg"></a>
 
-About the app
+Search for movies with algolia, netlify functions and auth0.
 
 ## Setup
 
