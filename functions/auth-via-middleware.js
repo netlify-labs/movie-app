@@ -33,26 +33,11 @@ const myMiddleware = (config) => {
         return handler.callback(null, {
           statusCode: 401,
           body: JSON.stringify({
-            data: 'auth false'
+            auth: 'false',
+            message: e.message
           })
         })
-        // next({
-        //   statusCode: 401,
-        //   message: e.message
-        // })
       })
-    },
-    onError: (handler, next) => {
-      console.log('Error middleware', handler)
-      console.log('next', next)
-      // might read options from `config`
-      return handler.callback(null, {
-        statusCode: 401,
-        body: JSON.stringify({
-          data: 'auth false'
-        })
-      })
-      // next()
     }
   })
 }
