@@ -12,16 +12,6 @@ export default class Profile extends Component {
 
     const image = (profile.picture) ? <img src={profile.picture} alt="profile" className="img-thumbnail" /> : null
 
-    let nickname
-    if (profile.picture) {
-      nickname = (
-        <div>
-          Nickname
-          <h3>{profile.nickname}</h3>
-        </div>
-      )
-    }
-
     return (
       <AppLayout>
         <div className="container card">

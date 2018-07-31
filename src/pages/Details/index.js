@@ -78,14 +78,7 @@ export default class Details extends Component {
             <div className="col-sm-12">
               <h2>Showtimes</h2>
               <div className="row">
-                {isAuthed && this.renderShowtimes()}
-                {!isAuthed &&
-                  <div className="col-sm-12 card">
-                    <div className="card-body text-center">
-                      <h1>Login to see showtimes</h1>
-                    </div>
-                  </div>
-                }
+
               </div>
             </div>
           </div>
@@ -94,3 +87,15 @@ export default class Details extends Component {
     )
   }
 }
+
+
+/*
+{isAuthed && this.renderShowtimes()}
+{!isAuthed &&
+  <div className="col-sm-12 card">
+    <div className="card-body text-center">
+      <h1>Login to see showtimes</h1>
+    </div>
+  </div>
+}
+*/
