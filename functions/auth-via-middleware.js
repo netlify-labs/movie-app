@@ -44,7 +44,13 @@ const myMiddleware = (config) => {
     onError: (handler, next) => {
       console.log('Error middleware')
       // might read options from `config`
-      next()
+      return handler.callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({
+          data: 'auth false'
+        })
+      })
+      // next()
     }
   })
 }
