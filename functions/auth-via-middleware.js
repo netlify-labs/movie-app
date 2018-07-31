@@ -2,25 +2,6 @@ import middy from 'middy'
 import { httpErrorHandler } from 'middy/middlewares'
 import checkAuth from './utils/checkAuth'
 
-const authMiddleware = (options) => {
-  return ({
-    before: async (handler, next) => {
-      const user = await checkAuth(handler.event)
-      console.log('middy user', user)
-      if (!user) {
-        console.log("THROW")
-        throw new Error('no')
-      }
-      next()
-    },
-    onError: (handler, next) => {
-      console.log('Error', handler)
-      // might read options from `config`
-      next()
-    }
-  })
-}
-
 const myMiddleware = (config) => {
   // might set default options in config
   return ({
@@ -53,6 +34,5 @@ const businessLogic = (event, context, callback) => {
 
 // sample usage
 exports.handler = middy(businessLogic)
-  //.use(authMiddleware())
   .use(myMiddleware())
-  .use(httpErrorHandler())
+  //.use(httpErrorHandler())
