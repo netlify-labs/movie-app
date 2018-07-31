@@ -36,16 +36,12 @@ const myMiddleware = (config) => {
         })
       })
     },
-    after: (handler, next) => {
-      console.log('After middleware')
-      // might read options from `config`
-      next()
-    },
     onError: (handler, next) => {
-      console.log('Error middleware')
+      console.log('Error middleware', handler)
+      console.log('next', next)
       // might read options from `config`
       return handler.callback(null, {
-        statusCode: 200,
+        statusCode: 401,
         body: JSON.stringify({
           data: 'auth false'
         })
