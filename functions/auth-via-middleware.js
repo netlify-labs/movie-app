@@ -1,4 +1,5 @@
 import middy from 'middy'
+import { httpErrorHandler } from 'middy/middlewares'
 import checkAuth from './utils/checkAuth'
 
 const authMiddleware = (options) => {
@@ -29,7 +30,7 @@ const myMiddleware = (config) => {
         next()
       }).catch((e) => {
         console.log('throw e', e)
-        return handler.callback(null, {
+        next({
           statusCode: 401,
           message: e.message
         })
@@ -61,3 +62,4 @@ const businessLogic = (event, context, callback) => {
 exports.handler = middy(businessLogic)
   //.use(authMiddleware())
   .use(myMiddleware())
+  .use(httpErrorHandler())
