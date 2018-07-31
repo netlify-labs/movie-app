@@ -1,13 +1,13 @@
 import middy from 'middy'
-import { httpErrorHandler } from 'middy/middlewares'
 import checkAuth from './utils/checkAuth'
 
-const myMiddleware = (config) => {
+const authMiddleware = (config) => {
   // might set default options in config
   return ({
     before: (handler, next) => {
       console.log('Before middleware')
       checkAuth(handler.event).then((user) => {
+        // We have the user, trigger next middleware
         next()
       }).catch((e) => {
         console.log('throw e', e)
@@ -24,6 +24,8 @@ const myMiddleware = (config) => {
 }
 
 const businessLogic = (event, context, callback) => {
+  // Do my custom stuff
+
   return callback(null, {
     statusCode: 200,
     body: JSON.stringify({
@@ -32,7 +34,5 @@ const businessLogic = (event, context, callback) => {
   })
 }
 
-// sample usage
-exports.handler = middy(businessLogic)
-  .use(myMiddleware())
-  //.use(httpErrorHandler())
+// Export the handler
+exports.handler = middy(businessLogic).use(authMiddleware())
